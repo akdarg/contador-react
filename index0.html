@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React CDN</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="root2"></div>
+    <div id="root3"></div>
+    <div id="root4"></div>
+    <!--
+    <script>
+      ReactDOM.render(
+        React.createElement("h1", null, "Hola Mundo React"),
+        document.getElementById("root")
+      );
+    </script>
+    -->
+
+    <!--Sin JSX-->
+    <script>
+      ReactDOM.render(
+        React.createElement(
+          "ol",
+          null,
+          React.createElement("li", null, "Manzana"),
+          React.createElement("li", null, "Limón"),
+          React.createElement("li", null, "Uva")
+        ),
+        document.getElementById("root")
+      );
+    </script>
+
+    <!--Con JSX-->
+    <script type="text/babel">
+      //Así se usa ahora
+      const Saludo = () => {
+        return (
+          <ul>
+            <li>Uno</li>
+            <li>Dos</li>
+          </ul>
+        );
+      };
+
+      //class ya no se está usando pero sigue funcionando
+      /*class Saludo extends React.Component {
+        render() {
+          return (
+            <ul>
+              <li>Uno</li>
+              <li>Dos</li>
+            </ul>
+          );
+        }
+      }*/
+
+      //ReactDOM.render(<Saludo></Saludo>, document.getElementById("root2"));
+      ReactDOM.render(<Saludo />, document.getElementById("root2"));
+
+      /*    ReactDOM.render(
+                <div>
+                <ul>
+                    <li>Manzana</li>
+                    <li>Limón</li>
+                    <li>Uva</li>
+                </ul>
+                </div>,
+                document.getElementById("root2")
+            );*/
+    </script>
+    <script type="text/babel">
+      const Interpolar = () => {
+        const nombre = prompt("Cual es tu nombre?");
+        return (
+          <div>
+            <h1>Hola {nombre}</h1>
+            <h2>Fecha {new Date().getFullYear()}</h2>
+            <hr />
+          </div>
+        );
+      };
+      ReactDOM.render(<Interpolar />, document.getElementById("root3"));
+    </script>
+
+    <!--Estados-->
+    <script type="text/babel">
+      const Interpolar = () => {
+        const [numero, setNumero] = React.useState(0);
+
+        setInterval(() => {
+          setNumero(numero + 1);
+        }, 1000);
+
+        return (
+          <div>
+            <h2>Fecha {numero}</h2>
+            <hr />
+          </div>
+        );
+      };
+      ReactDOM.render(<Interpolar />, document.getElementById("root4"));
+    </script>
+  </body>
+</html>
